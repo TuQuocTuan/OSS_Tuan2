@@ -1,0 +1,53 @@
+name: Deploy to somee
+
+on:
+  push:
+    # Kích hoạt quá trình triển khai mỗi khi có commit được đẩy lên nhánh 'main'
+    branches:
+      - main
+  workflow_dispatch:
+    # Cho phép chạy thủ công từ giao diện GitHub
+
+jobs:
+  deploy:
+    name: Deploy to somee
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check source
+        uses: actions/checkout@v4
+
+      # (Tùy chọn) Nếu dự án của bạn là mã nguồn cần được build/compile (ví dụ: React, Vue, Node.js)
+      # Hãy thêm các bước build ở đây. Ví dụ:
+      # - name: Thiết lập Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '18'
+      # - name: Cài đặt Dependencies và Build
+      #   run: |
+      #     npm install
+      #     npm run build
+      
+      - name: Deploy to somee
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+        with:
+          # Thay thế 'folder' bằng 'local-dir' (Thư mục nguồn trên GitHub Runner)
+          local-dir: ./
+          
+          # Thay thế 'ftp-server' bằng 'server' (Sử dụng secrets.HOST)
+          server: ${{ secrets.HOST }}
+          
+          # Thay thế 'ftp-username' bằng 'username' (Sử dụng secrets.USERNAME)
+          username: ${{ secrets.USERNAME }}
+          
+          # Thay thế 'ftp-password' bằng 'password' (Sử dụng secrets.PASSWORD)
+          password: ${{ secrets.PASSWORD }}
+          
+          # Thay thế 'ftp-port' bằng 'port'
+          port: 21 
+          protocol: ftp
+          # Thay thế 'to-directory' bằng 'server-dir' (Thư mục đích trên FTP Server)
+          server-dir: /www.QuocTuan.somee.com/
+          
+          # Giữ nguyên các tham số khác
+          dangerous-clean-slate: false
