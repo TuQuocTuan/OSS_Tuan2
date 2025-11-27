@@ -32,7 +32,7 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
           # Thay thế 'folder' bằng 'local-dir' (Thư mục nguồn trên GitHub Runner)
-          local-dir: .
+          local-dir: ./
           
           # Thay thế 'ftp-server' bằng 'server' (Sử dụng secrets.HOST)
           server: ${{ secrets.HOST }}
