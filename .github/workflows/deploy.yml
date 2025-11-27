@@ -31,22 +31,23 @@ jobs:
       - name: Deploy to somee
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
-          # Thư mục chứa các file đã build/sẵn sàng để deploy (ví dụ: build, dist, public, hoặc . nếu là mã nguồn thuần)
-          folder: .
+          # Thay thế 'folder' bằng 'local-dir' (Thư mục nguồn trên GitHub Runner)
+          local-dir: .
           
-          # Chi tiết kết nối FTP (nên dùng Secrets)
-          ftp-server: ${{ secrets.HOST}}
-          ftp-username: ${{ secrets.USERNAME }}
-          ftp-password: ${{ secrets.PASSWORD }}
+          # Thay thế 'ftp-server' bằng 'server' (Sử dụng secrets.HOST)
+          server: ${{ secrets.HOST }}
           
-          # Cổng FTP (mặc định là 21)
-          ftp-port: 21 
+          # Thay thế 'ftp-username' bằng 'username' (Sử dụng secrets.USERNAME)
+          username: ${{ secrets.USERNAME }}
           
-          # Thư mục đích trên server (ví dụ: /wwwroot/, /public_html/)
-          # Thay thế bằng thư mục gốc trên Somee của bạn
-          # Ví dụ: /wwwroot/
-          to-directory: /
+          # Thay thế 'ftp-password' bằng 'password' (Sử dụng secrets.PASSWORD)
+          password: ${{ secrets.PASSWORD }}
           
-          # Cấu hình an toàn: chỉ tải lên file mới, không xóa các file đã có trên server
-          # Nếu bạn muốn xóa các file cũ không còn tồn tại trong mã nguồn, thay bằng 'true'
+          # Thay thế 'ftp-port' bằng 'port'
+          port: 21 
+          
+          # Thay thế 'to-directory' bằng 'server-dir' (Thư mục đích trên FTP Server)
+          server-dir: /
+          
+          # Giữ nguyên các tham số khác
           dangerous-clean-slate: false
