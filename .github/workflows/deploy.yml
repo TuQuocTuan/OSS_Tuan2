@@ -47,7 +47,7 @@ jobs:
           port: 21 
           
           # Thay thế 'to-directory' bằng 'server-dir' (Thư mục đích trên FTP Server)
-          server-dir: /
+          server-dir: /www.QuocTuan.somee.com/
           
           # Giữ nguyên các tham số khác
           dangerous-clean-slate: false
