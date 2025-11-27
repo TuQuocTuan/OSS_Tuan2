@@ -45,7 +45,7 @@ jobs:
           
           # Thay thế 'ftp-port' bằng 'port'
           port: 21 
-          protocol: ftps
+          
           # Thay thế 'to-directory' bằng 'server-dir' (Thư mục đích trên FTP Server)
           server-dir: /www.QuocTuan.somee.com/
           
